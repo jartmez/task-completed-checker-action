@@ -5,16 +5,16 @@ A GitHub action that checks if all tasks are completed in the pull requests.
 
 ### Create a workflow
 ```yml
-name: 'PR Tasks Completed Check'
+name: 'PR Checklist fulfillment check'
 on: 
   pull_request:
-    types: [opened, edited]
+    types: [opened, edited, synchronize]
 
 jobs:
   task-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: jartmez/task-completed-checker-action
+      - uses: jartmez/task-completed-checker-action@v1.0.1
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
 ```

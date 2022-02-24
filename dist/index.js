@@ -5131,7 +5131,7 @@ module.exports = require("http");
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createTaskListText = exports.removeIgnoreTaskListText = void 0;
 function removeIgnoreTaskListText(text) {
-    return text.replace(/<!-- ignore-task-list-start -->[\s| ]*((-|\*) \[[x| ]\] .+[\s| ]*)+<!-- ignore-task-list-end -->/g, '');
+    return text.replace(/<!-- ignore-task-list-start -->\n*(.|\n)*\n*<!-- ignore-task-list-end -->/g, '');
 }
 exports.removeIgnoreTaskListText = removeIgnoreTaskListText;
 function createTaskListText(body) {

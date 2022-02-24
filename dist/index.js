@@ -841,12 +841,12 @@ function run() {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
                     const taskList = utils_1.removeIgnoreTaskListText(body);
-                    core.debug('Task list: ');
-                    core.debug(taskList);
+                    core.info('Task list: ');
+                    core.info(taskList);
                     const allTasksAreCompleted = taskList.match(/(- \[[ ]\].+)/g) === null;
                     const resultText = utils_1.createTaskListText(taskList);
-                    core.debug('Creating lists of completed and uncompleted Tasks: ');
-                    core.debug(resultText);
+                    core.info('Creating lists of completed and uncompleted Tasks: ');
+                    core.info(resultText);
                     yield createResultCheck(resultText, allTasksAreCompleted);
                     return;
                 }

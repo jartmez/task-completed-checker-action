@@ -19,15 +19,15 @@ async function run(): Promise<void> {
     try {
       const taskList = removeIgnoreTaskListText(body)
 
-      core.debug('Task list: ')
-      core.debug(taskList)
+      core.info('Task list: ')
+      core.info(taskList)
 
       const allTasksAreCompleted = taskList.match(/(- \[[ ]\].+)/g) === null
 
       const resultText = createTaskListText(taskList)
 
-      core.debug('Creating lists of completed and uncompleted Tasks: ')
-      core.debug(resultText)
+      core.info('Creating lists of completed and uncompleted Tasks: ')
+      core.info(resultText)
 
       await createResultCheck(resultText, allTasksAreCompleted)
       return

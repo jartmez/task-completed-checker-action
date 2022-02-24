@@ -840,11 +840,11 @@ function run() {
         function main() {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
-                    const taskList = utils_1.removeIgnoreTaskListText(body);
-                    core.info('Task list: ');
-                    core.info(taskList);
-                    const allTasksAreCompleted = taskList.match(/((-|\*) \[[ ]\].+)/g) === null;
-                    const resultText = utils_1.createTaskListText(taskList);
+                    const cleanedUpBody = utils_1.removeIgnoreTaskListText(body);
+                    core.info('PR body: ');
+                    core.info(cleanedUpBody);
+                    const allTasksAreCompleted = cleanedUpBody.match(/((-|\*) \[[ ]\].+)/g) === null;
+                    const resultText = utils_1.createTaskListText(cleanedUpBody);
                     core.info('Creating lists of completed and uncompleted Tasks: ');
                     core.info(resultText);
                     yield createResultCheck(resultText, allTasksAreCompleted);
@@ -5131,12 +5131,12 @@ module.exports = require("http");
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createTaskListText = exports.removeIgnoreTaskListText = void 0;
 function removeIgnoreTaskListText(text) {
-    return text.replace(/<!-- ignore-task-list-start -->[\s| ]*(- \[[x| ]\] .+[\s| ]*)+<!-- ignore-task-list-end -->/g, '');
+    return text.replace(/<!-- ignore-task-list-start -->[\s| ]*((-|\*) \[[x| ]\] .+[\s| ]*)+<!-- ignore-task-list-end -->/g, '');
 }
 exports.removeIgnoreTaskListText = removeIgnoreTaskListText;
 function createTaskListText(body) {
-    const completedTasks = body.match(/(- \[[x]\].+)/g);
-    const uncompletedTasks = body.match(/(- \[[ ]\].+)/g);
+    const completedTasks = body.match(/((-|\*) \[[x]\].+)/g);
+    const uncompletedTasks = body.match(/((-|\*) \[[ ]\].+)/g);
     let text = '';
     if (completedTasks !== null) {
         for (let index = 0; index < completedTasks.length; index++) {

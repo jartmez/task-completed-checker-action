@@ -17,15 +17,15 @@ async function run(): Promise<void> {
 
   async function main(): Promise<void> {
     try {
-      const taskList = removeIgnoreTaskListText(body)
+      const cleanedUpBody = removeIgnoreTaskListText(body)
 
-      core.info('Task list: ')
-      core.info(taskList)
+      core.info('PR body: ')
+      core.info(cleanedUpBody)
 
       const allTasksAreCompleted =
-        taskList.match(/((-|\*) \[[ ]\].+)/g) === null
+        cleanedUpBody.match(/((-|\*) \[[ ]\].+)/g) === null
 
-      const resultText = createTaskListText(taskList)
+      const resultText = createTaskListText(cleanedUpBody)
 
       core.info('Creating lists of completed and uncompleted Tasks: ')
       core.info(resultText)

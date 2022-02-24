@@ -22,7 +22,8 @@ async function run(): Promise<void> {
       core.info('Task list: ')
       core.info(taskList)
 
-      const allTasksAreCompleted = taskList.match(/(- \[[ ]\].+)/g) === null
+      const allTasksAreCompleted =
+        taskList.match(/((-|\*) \[[ ]\].+)/g) === null
 
       const resultText = createTaskListText(taskList)
 

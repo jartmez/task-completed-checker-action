@@ -841,7 +841,7 @@ function run() {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
                     const cleanedUpBody = utils_1.removeIgnoreTaskListText(body);
-                    core.info('PR body: ');
+                    core.info('PR body to check: ');
                     core.info(cleanedUpBody);
                     const allTasksAreCompleted = cleanedUpBody.match(/((-|\*) \[[ ]\].+)/g) === null;
                     const resultText = utils_1.createTaskListText(cleanedUpBody);
@@ -5131,7 +5131,7 @@ module.exports = require("http");
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createTaskListText = exports.removeIgnoreTaskListText = void 0;
 function removeIgnoreTaskListText(text) {
-    return text.replace(/<!-- ignore-task-list-start -->\n*(.|\n)*\n*<!-- ignore-task-list-end -->/g, '');
+    return text.replace(/<!--\s*ignore-task-list-start\s*-->[\d\D]*?<!--\s*ignore-task-list-end\s*-->/g, '');
 }
 exports.removeIgnoreTaskListText = removeIgnoreTaskListText;
 function createTaskListText(body) {

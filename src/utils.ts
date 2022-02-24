@@ -1,6 +1,6 @@
 export function removeIgnoreTaskListText(text: string): string {
   return text.replace(
-    /<!-- ignore-task-list-start -->\n*(.|\n)*\n*<!-- ignore-task-list-end -->/g,
+    /<!--\s*ignore-task-list-start\s*-->[\d\D]*?<!--\s*ignore-task-list-end\s*-->/g,
     ''
   )
 }

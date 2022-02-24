@@ -19,7 +19,7 @@ async function run(): Promise<void> {
     try {
       const cleanedUpBody = removeIgnoreTaskListText(body)
 
-      core.info('PR body: ')
+      core.info('PR body to check: ')
       core.info(cleanedUpBody)
 
       const allTasksAreCompleted =
